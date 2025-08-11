@@ -11,21 +11,22 @@ namespace exercise.main.Items
     {
         private string _sku;
         private float _price;
+        private float _discountedPrice;
 
-        public string SKU => throw new NotImplementedException();
+        public string SKU { get { return _sku; } }
 
-        public float Price => throw new NotImplementedException();
+        public float Price { get { return _price; } }
 
-        public float DiscountedPrice => throw new NotImplementedException();
+        public float DiscountedPrice {  get { return _discountedPrice; } }
 
         public float GetFinalPrice()
         {
-            throw new NotImplementedException();
+            return _price;
         }
 
         public void SetDiscountPrice(float discountPrice)
         {
-            throw new NotImplementedException();
+            _discountedPrice = discountPrice;
         }
 
         public Coffee(string sku, float price)

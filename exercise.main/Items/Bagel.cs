@@ -13,29 +13,30 @@ namespace exercise.main.Items
         private string _sku;
         private float _price;
         private float _discountedPrice;
-        private List<IInventoryProduct> _fillings;
+        private List<Filling> _fillings = new();
 
-        public string SKU => throw new NotImplementedException();
+        public string SKU { get { return _sku; } }
 
-        public float Price => throw new NotImplementedException();
+        public float Price { get { return _price;  } }
 
-        public float DiscountedPrice => throw new NotImplementedException();
+        public float DiscountedPrice { get { return _discountedPrice; } }
 
-        public List<IInventoryProduct> Products => throw new NotImplementedException();
+        List<Filling> IFillable.Fillings { get { return _fillings; } }
 
         public void SetDiscountPrice(float discountPrice)
         {
-            throw new NotImplementedException();
+            _discountedPrice = discountPrice;
         }
 
         public float GetFinalPrice()
         {
-            throw new NotImplementedException();
+            float sumFillings = _fillings.Sum(f => f.GetFinalPrice());
+            return sumFillings + _price;
         }
 
-        public void AddFillings(IInventoryProduct filling)
+        public void AddFillings(Filling filling)
         {
-            throw new NotImplementedException();
+            _fillings.Add(filling);
         }
 
         public Bagel(string sku, float price) { 

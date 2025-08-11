@@ -12,13 +12,13 @@ namespace exercise.main.Items
         private string _sku;
         private float _price;
 
-        public string SKU => throw new NotImplementedException();
+        public string SKU { get { return _sku; } }
 
-        public float Price => throw new NotImplementedException();
+        public float Price { get { return _price; } }
 
         public float GetFinalPrice()
         {
-            throw new NotImplementedException();
+            return _price;
         }
 
         public Filling(string sku, float price)

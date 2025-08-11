@@ -67,7 +67,7 @@ public class Tests
 
         var basketProducts = basket.Products.ToList();
 
-        Assert.Throws<ItemNotInBasketException>(() => basket.Remove("BGLO"););
+        Assert.Throws<ItemNotInBasketException>(() => basket.Remove("BGLO"));
     }
 
     [Test]
