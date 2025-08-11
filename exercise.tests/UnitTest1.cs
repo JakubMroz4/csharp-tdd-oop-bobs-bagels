@@ -1,4 +1,5 @@
 using exercise.main;
+using exercise.main.Collections;
 using exercise.main.Exceptions;
 using exercise.main.Items;
 
@@ -154,6 +155,25 @@ public class Tests
         var price = basket.GetTotalCost();
 
         Assert.That(price, Is.EqualTo(Discounts.BgloDiscount().NewTotalPrice));
+    }
+
+    [Test]
+    public void AddBGLODiscountTest2()
+    {
+        var basket = new Basket(7);
+
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+
+        basket.Add(Products.BGLO());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Discounts.BgloDiscount().NewTotalPrice + Products.BGLO().Price));
     }
 
     [Test]

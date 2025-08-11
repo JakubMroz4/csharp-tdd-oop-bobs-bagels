@@ -9,6 +9,7 @@ namespace exercise.main.Items
 {
     public class Filling : IInventoryProduct
     {
+        private string _name;
         private string _sku;
         private Decimal _price;
 
@@ -16,13 +17,16 @@ namespace exercise.main.Items
 
         public Decimal Price { get { return _price; } }
 
+        public string Name => throw new NotImplementedException();
+
         public Decimal GetFinalPrice()
         {
             return _price;
         }
 
-        public Filling(string sku, Decimal price)
+        public Filling(string name, string sku, Decimal price)
         {
+            _name = name;
             _sku = sku;
             _price = price;
         }

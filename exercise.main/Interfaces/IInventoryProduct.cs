@@ -8,6 +8,7 @@ namespace exercise.main.Interfaces
 {
     public interface IInventoryProduct
     {
+        public string Name { get; }
         public string SKU { get; }
         public Decimal Price { get; }        
 

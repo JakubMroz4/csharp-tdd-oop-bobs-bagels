@@ -10,6 +10,7 @@ namespace exercise.main.Items
 {
     public class Bagel : IInventoryProduct, IFillable, IDiscountable
     {
+        private string _name;
         private string _sku;
         private Decimal _price;
         private Decimal _discountedPrice;
@@ -24,6 +25,8 @@ namespace exercise.main.Items
         List<Filling> IFillable.Fillings { get { return _fillings; } }
 
         public bool IsDiscounted { get; set; }
+
+        public string Name {  get { return _name; } }
 
         public void SetDiscountPrice(Decimal discountPrice)
         {
@@ -44,7 +47,8 @@ namespace exercise.main.Items
             _fillings.Add(filling);
         }
 
-        public Bagel(string sku, Decimal price) { 
+        public Bagel(string name, string sku, Decimal price) { 
+            _name = name;
             _sku = sku;
             _price = price;
             IsDiscounted = false;

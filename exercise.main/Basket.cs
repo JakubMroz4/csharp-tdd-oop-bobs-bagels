@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using exercise.main.Exceptions;
+using exercise.main.Collections;
 
 namespace exercise.main
 {
@@ -112,6 +113,18 @@ namespace exercise.main
         private void ResetDiscountedPrices()
         {
             _products.ForEach(p => p.IsDiscounted = false);
+        }
+
+        public void PrintReceipt(IReceiptPrinter printer)
+        {
+            var groupedByItem = _products.GroupBy(p => p.SKU);
+
+            string itemsString = "";
+
+            foreach (var group in groupedByItem) 
+            { 
+            
+            }
         }
     }
 }

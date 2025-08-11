@@ -9,6 +9,7 @@ namespace exercise.main.Items
 {
     public class Coffee : IInventoryProduct, IDiscountable
     {
+        private string _name;
         private string _sku;
         private Decimal _price;
         private Decimal _discountedPrice;
@@ -21,6 +22,8 @@ namespace exercise.main.Items
 
         public bool IsDiscounted { get; set; }
 
+        public string Name {  get { return _name; } }
+
         public Decimal GetFinalPrice()
         {
             return _price;
@@ -31,8 +34,9 @@ namespace exercise.main.Items
             _discountedPrice = discountPrice;
         }
 
-        public Coffee(string sku, Decimal price)
+        public Coffee(string name, string sku, Decimal price)
         {
+            _name = name;
             _sku = sku;
             _price = price;
         }

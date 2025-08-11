@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace exercise.main
+namespace exercise.main.Collections
 {
     public static class Prices
     {
-        public static Dictionary<string, Decimal> SkuToPriceMap = new Dictionary<string, decimal> 
+        public static Dictionary<string, decimal> SkuToPriceMap = new Dictionary<string, decimal> 
         {
             {"BGLO", 0.49m},
             {"BGLP", 0.39m},
