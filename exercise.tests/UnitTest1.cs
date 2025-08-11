@@ -140,7 +140,7 @@ public class Tests
     }
 
     [Test]
-    public void AddBagelDiscount()
+    public void AddBGLODiscountTest()
     {
         var basket = new Basket(6);
 
@@ -154,5 +154,72 @@ public class Tests
         var price = basket.GetTotalCost();
 
         Assert.That(price, Is.EqualTo(Discounts.BgloDiscount().NewTotalPrice));
+    }
+
+    [Test]
+    public void AddBGLOThenRemoveDiscountTest()
+    {
+        var basket = new Basket(6);
+
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+
+        basket.Remove("BGLO");
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Products.BGLO().Price * 5));
+    }
+
+    [Test]
+    public void AddBGLPDiscountTest()
+    {
+        var basket = new Basket(15);
+
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Discounts.BglpDiscount().NewTotalPrice));
+    }
+
+    [Test]
+    public void AddBGLPDiscountThenCoffeeTest()
+    {
+        var basket = new Basket(15);
+
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+        basket.Add(Products.BGLP());
+
+        basket.Add(Products.COFB());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Discounts.BglpDiscount().NewTotalPrice + Products.COFB().Price));
     }
 }

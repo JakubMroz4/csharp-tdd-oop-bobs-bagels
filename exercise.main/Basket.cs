@@ -79,7 +79,6 @@ namespace exercise.main
                     if (count < kvp.Value)
                     {
                         discounts.Pop();
-                        Console.WriteLine("DISCOUNT POPPED");
                         missingRequirements = true;
                         break;
                     }                        
@@ -91,8 +90,6 @@ namespace exercise.main
                 // apply discounted prices if requirement passed
                 // move discounted items to new list
 
-                Console.WriteLine("DISCOUNT PASSED");
-
                 foreach (var kvp in discount.ItemRequirementAmountDict) 
                 {
                     var newPrice = discount.ItemDiscountedPriceDict.GetValueOrDefault(kvp.Key);
@@ -101,7 +98,7 @@ namespace exercise.main
                     discounted.ForEach(p => p.IsDiscounted = true);
                     discountedItems.AddRange(discounted);
 
-                    var itemsToRemove = undiscountedItems.Where(p => p.SKU == kvp.Key).ToList();
+                    var itemsToRemove = undiscountedItems.Where(p => p.SKU == kvp.Key).Take(kvp.Value).ToList();
                     itemsToRemove.ForEach(i => undiscountedItems.Remove(i));
                 }                
             }

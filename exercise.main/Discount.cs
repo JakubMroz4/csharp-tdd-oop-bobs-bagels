@@ -11,6 +11,7 @@ namespace exercise.main
         public Dictionary<string, int> ItemRequirementAmountDict;
         public Dictionary<string, Decimal> ItemDiscountedPriceDict;
         public Decimal SavedAmount;
+        public Decimal SavingsPercentage;
         public Decimal NewTotalPrice;
 
         public Discount(Dictionary<string,int> itemRequirementAmountDict, Dictionary<string, Decimal> itemDiscountedPriceDict) 
@@ -19,6 +20,7 @@ namespace exercise.main
             ItemDiscountedPriceDict = itemDiscountedPriceDict;
 
             SavedAmount = CalculateSavedAmount();
+            SavingsPercentage = CalculatePercentageSavedAmount();
             NewTotalPrice = CalculateNewTotal();
         }
 
@@ -38,6 +40,24 @@ namespace exercise.main
             }
 
             return oldTotalCost - newTotalCost;
+        }
+
+        private Decimal CalculatePercentageSavedAmount()
+        {
+            Decimal oldTotalCost = 0;
+            Decimal newTotalCost = 0;
+
+            foreach (var key in ItemRequirementAmountDict.Keys)
+            {
+                var oldPrice = Prices.SkuToPriceMap.GetValueOrDefault(key);
+                var newPrice = ItemDiscountedPriceDict.GetValueOrDefault(key);
+                var amount = ItemRequirementAmountDict.GetValueOrDefault(key);
+
+                oldTotalCost += oldPrice * amount;
+                newTotalCost += newPrice * amount;
+            }
+
+            return 1 - (oldTotalCost / newTotalCost);
         }
 
         private Decimal CalculateNewTotal()
