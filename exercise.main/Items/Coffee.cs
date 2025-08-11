@@ -19,6 +19,8 @@ namespace exercise.main.Items
 
         public Decimal DiscountedPrice {  get { return _discountedPrice; } }
 
+        public bool IsDiscounted { get; set; }
+
         public Decimal GetFinalPrice()
         {
             return _price;

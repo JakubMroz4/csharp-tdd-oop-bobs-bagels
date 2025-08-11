@@ -11,10 +11,10 @@ namespace exercise.main
     public class Basket
     {
         private int _capacity;
-        private List<IInventoryProduct> _products = new();
+        private List<IDiscountable> _products = new();
 
 
-        public List<IInventoryProduct> Products { get { return _products; } }
+        public List<IDiscountable> Products { get { return _products; } }
         public int Capacity { get { return _capacity; } }
 
         public Basket(int capacity) 
@@ -22,7 +22,7 @@ namespace exercise.main
             _capacity = capacity;
         }
 
-        public void Add(IInventoryProduct product)
+        public void Add(IDiscountable product)
         {
             if (product == null)
                 throw new ArgumentNullException();
@@ -31,6 +31,8 @@ namespace exercise.main
                 throw new BasketFullException();
 
             _products.Add(product);
+
+            CalculateDiscounts();
         }
 
         public void Remove(string SKU)
@@ -43,6 +45,8 @@ namespace exercise.main
 
             var itemToRemove = _products.Where(p => p.SKU == SKU).FirstOrDefault();
             _products.Remove(itemToRemove);
+
+            CalculateDiscounts();
         }
 
         public void ChangeCapacity(int newCapacity)
@@ -53,6 +57,64 @@ namespace exercise.main
         public Decimal GetTotalCost()
         {
             return _products.Sum(p => p.GetFinalPrice());
+        }
+
+        private void CalculateDiscounts()
+        {
+            ResetDiscountedPrices();
+
+            var discounts = new Stack<Discount>(Discounts.List.OrderBy(p => p.SavedAmount));
+
+            var undiscountedItems = _products.Select(p => p).ToList();
+            var discountedItems = new List<IDiscountable>();
+
+            while (discounts.Count > 0)
+            {
+                var discount = discounts.Peek();
+
+                bool missingRequirements = false;
+                foreach (var kvp in discount.ItemRequirementAmountDict)
+                {
+                    var count = undiscountedItems.Count(k => k.SKU == kvp.Key);
+                    if (count < kvp.Value)
+                    {
+                        discounts.Pop();
+                        Console.WriteLine("DISCOUNT POPPED");
+                        missingRequirements = true;
+                        break;
+                    }                        
+                }
+
+                if (missingRequirements)
+                    continue;
+
+                // apply discounted prices if requirement passed
+                // move discounted items to new list
+
+                Console.WriteLine("DISCOUNT PASSED");
+
+                foreach (var kvp in discount.ItemRequirementAmountDict) 
+                {
+                    var newPrice = discount.ItemDiscountedPriceDict.GetValueOrDefault(kvp.Key);
+                    var discounted = undiscountedItems.Where(p => p.SKU == kvp.Key).Take(kvp.Value).ToList();
+                    discounted.ForEach(p => p.SetDiscountPrice(newPrice));
+                    discounted.ForEach(p => p.IsDiscounted = true);
+                    discountedItems.AddRange(discounted);
+
+                    var itemsToRemove = undiscountedItems.Where(p => p.SKU == kvp.Key).ToList();
+                    itemsToRemove.ForEach(i => undiscountedItems.Remove(i));
+                }                
+            }
+
+            List<IDiscountable> newProducts = new();
+            newProducts.AddRange(undiscountedItems);
+            newProducts.AddRange(discountedItems);
+            _products = newProducts;
+        }
+
+        private void ResetDiscountedPrices()
+        {
+            _products.ForEach(p => p.IsDiscounted = false);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace exercise.main.Items
 
         List<Filling> IFillable.Fillings { get { return _fillings; } }
 
+        public bool IsDiscounted { get; set; }
+
         public void SetDiscountPrice(Decimal discountPrice)
         {
             _discountedPrice = discountPrice;
@@ -31,6 +33,9 @@ namespace exercise.main.Items
         public Decimal GetFinalPrice()
         {
             var sumFillings = _fillings.Sum(f => f.GetFinalPrice());
+            if (IsDiscounted)
+                return sumFillings + DiscountedPrice;
+
             return sumFillings + _price;
         }
 
@@ -42,6 +47,7 @@ namespace exercise.main.Items
         public Bagel(string sku, Decimal price) { 
             _sku = sku;
             _price = price;
+            IsDiscounted = false;
         }
     }
 }

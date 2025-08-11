@@ -124,7 +124,7 @@ public class Tests
 
 
     [Test]
-    public void AddFillingToBagel()
+    public void AddFillingToBagelTest()
     {
         var basket = new Basket(6);
 
@@ -137,5 +137,22 @@ public class Tests
         var price = basket.GetTotalCost();
 
         Assert.That(price, Is.EqualTo(Products.BGLO().Price + Products.FILS().Price));
+    }
+
+    [Test]
+    public void AddBagelDiscount()
+    {
+        var basket = new Basket(6);
+
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLO());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Discounts.BgloDiscount().NewTotalPrice));
     }
 }

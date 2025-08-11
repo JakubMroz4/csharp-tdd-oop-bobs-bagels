@@ -31,72 +31,86 @@ FILH	0.12	Filling	Ham
 
         public static Bagel BGLO()
         {
-            return new Bagel("BGLO", 0.49m);
+            var sku = "BGLO";
+            return new Bagel(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Bagel BGLP()
         {
-            return new Bagel("BGLP", 0.39m);
+            var sku = "BGLP";
+            return new Bagel(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Bagel BGLE()
         {
-            return new Bagel("BGLE", 0.49m);
+            var sku = "BGLE";
+            return new Bagel(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Bagel BGLS()
         {
-            return new Bagel("BGLS", 0.49m);
+            var sku = "BGLS";
+            return new Bagel(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Coffee COFB()
         {
-            return new Coffee("COFB", 0.99m);
+            var sku = "COFB";
+            return new Coffee(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Coffee COFW()
         {
-            return new Coffee("COFB", 1.19m);
+            var sku = "COFW";
+            return new Coffee(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Coffee COFC()
         {
-            return new Coffee("COFC", 1.29m);
+            var sku = "COFC";
+            return new Coffee(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Coffee COFL()
         {
-            return new Coffee("COFL", 1.29m);
+            var sku = "COFL";
+            return new Coffee(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILB()
         {
-            return new Filling("FILB", 0.12m);
+            var sku = "FILB";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILE()
         {
-            return new Filling("FILE", 0.12m);
+            var sku = "FILE";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILC()
         {
-            return new Filling("FILC", 0.12m);
+            var sku = "FILC";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILX()
         {
-            return new Filling("FILX", 0.12m);
+            var sku = "FILX";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILS()
         {
-            return new Filling("FILS", 0.12m);
+            var sku = "FILS";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
 
         public static Filling FILH()
         {
-            return new Filling("FILH", 0.12m);
+            var sku = "FILH";
+            return new Filling(sku, Prices.SkuToPriceMap[sku]);
         }
     }
 }
