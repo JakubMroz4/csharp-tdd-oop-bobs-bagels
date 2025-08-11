@@ -98,4 +98,44 @@ public class Tests
         var basketProducts = basket.Products.ToList();
         Assert.That(basketProducts.Count, Is.EqualTo(4));
     }
+
+    [Test]
+    public void CheckBasketPriceTest()
+    {
+        var basket = new Basket(3);
+        basket.Add(Products.BGLO());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Products.BGLO().Price));
+    }
+
+    [Test]
+    public void CheckBasketPriceTest2()
+    {
+        var basket = new Basket(6);
+        basket.Add(Products.BGLO());
+        basket.Add(Products.BGLP());
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Products.BGLO().Price + Products.BGLP().Price));
+    }
+
+
+    [Test]
+    public void AddFillingToBagel()
+    {
+        var basket = new Basket(6);
+
+        var bagel = Products.BGLO();
+        var filling = Products.FILS();
+        bagel.AddFillings(filling);
+
+        basket.Add(bagel);
+
+        var price = basket.GetTotalCost();
+
+        Assert.That(price, Is.EqualTo(Products.BGLO().Price + Products.FILS().Price));
+    }
 }
