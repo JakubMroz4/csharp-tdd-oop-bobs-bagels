@@ -31,72 +31,72 @@ FILH	0.12	Filling	Ham
 
         public static IInventoryProduct BGLO()
         {
-            return new Bagel("BGLO", 0.49f);
+            return new Bagel("BGLO", 0.49m);
         }
 
         public static IInventoryProduct BGLP()
         {
-            return new Bagel("BGLP", 0.39f);
+            return new Bagel("BGLP", 0.39m);
         }
 
         public static IInventoryProduct BGLE()
         {
-            return new Bagel("BGLE", 0.49f);
+            return new Bagel("BGLE", 0.49m);
         }
 
         public static IInventoryProduct BGLS()
         {
-            return new Bagel("BGLS", 0.49f);
+            return new Bagel("BGLS", 0.49m);
         }
 
         public static IInventoryProduct COFB()
         {
-            return new Coffee("COFB", 0.99f);
+            return new Coffee("COFB", 0.99m);
         }
 
         public static IInventoryProduct COFW()
         {
-            return new Coffee("COFB", 1.19f);
+            return new Coffee("COFB", 1.19m);
         }
 
         public static IInventoryProduct COFC()
         {
-            return new Coffee("COFC", 1.29f);
+            return new Coffee("COFC", 1.29m);
         }
 
         public static IInventoryProduct COFL()
         {
-            return new Coffee("COFL", 1.29f);
+            return new Coffee("COFL", 1.29m);
         }
 
         public static IInventoryProduct FILB()
         {
-            return new Filling("FILB", 0.12f);
+            return new Filling("FILB", 0.12m);
         }
 
         public static IInventoryProduct FILE()
         {
-            return new Filling("FILE", 0.12f);
+            return new Filling("FILE", 0.12m);
         }
 
         public static IInventoryProduct FILC()
         {
-            return new Coffee("FILC", 0.12f);
+            return new Coffee("FILC", 0.12m);
         }
 
         public static IInventoryProduct FILX()
         {
-            return new Coffee("FILX", 0.12f);
+            return new Coffee("FILX", 0.12m);
         }
 
         public static IInventoryProduct FILS()
         {
-            return new Coffee("FILS", 0.12f);
+            return new Coffee("FILS", 0.12m);
         }
 
         public static IInventoryProduct FILH()
         {
-            return new Coffee("FILH", 0.12f);
+            return new Coffee("FILH", 0.12m);
         }
     }
 }

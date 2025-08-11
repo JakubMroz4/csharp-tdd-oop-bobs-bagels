@@ -10,26 +10,26 @@ namespace exercise.main.Items
     public class Coffee : IInventoryProduct, IDiscountable
     {
         private string _sku;
-        private float _price;
-        private float _discountedPrice;
+        private Decimal _price;
+        private Decimal _discountedPrice;
 
         public string SKU { get { return _sku; } }
 
-        public float Price { get { return _price; } }
+        public Decimal Price { get { return _price; } }
 
-        public float DiscountedPrice {  get { return _discountedPrice; } }
+        public Decimal DiscountedPrice {  get { return _discountedPrice; } }
 
-        public float GetFinalPrice()
+        public Decimal GetFinalPrice()
         {
             return _price;
         }
 
-        public void SetDiscountPrice(float discountPrice)
+        public void SetDiscountPrice(Decimal discountPrice)
         {
             _discountedPrice = discountPrice;
         }
 
-        public Coffee(string sku, float price)
+        public Coffee(string sku, Decimal price)
         {
             _sku = sku;
             _price = price;

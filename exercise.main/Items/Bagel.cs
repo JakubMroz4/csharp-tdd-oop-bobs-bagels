@@ -11,26 +11,26 @@ namespace exercise.main.Items
     public class Bagel : IInventoryProduct, IFillable, IDiscountable
     {
         private string _sku;
-        private float _price;
-        private float _discountedPrice;
+        private Decimal _price;
+        private Decimal _discountedPrice;
         private List<Filling> _fillings = new();
 
         public string SKU { get { return _sku; } }
 
-        public float Price { get { return _price;  } }
+        public Decimal Price { get { return _price;  } }
 
-        public float DiscountedPrice { get { return _discountedPrice; } }
+        public Decimal DiscountedPrice { get { return _discountedPrice; } }
 
         List<Filling> IFillable.Fillings { get { return _fillings; } }
 
-        public void SetDiscountPrice(float discountPrice)
+        public void SetDiscountPrice(Decimal discountPrice)
         {
             _discountedPrice = discountPrice;
         }
 
-        public float GetFinalPrice()
+        public Decimal GetFinalPrice()
         {
-            float sumFillings = _fillings.Sum(f => f.GetFinalPrice());
+            var sumFillings = _fillings.Sum(f => f.GetFinalPrice());
             return sumFillings + _price;
         }
 
@@ -39,7 +39,7 @@ namespace exercise.main.Items
             _fillings.Add(filling);
         }
 
-        public Bagel(string sku, float price) { 
+        public Bagel(string sku, Decimal price) { 
             _sku = sku;
             _price = price;
         }

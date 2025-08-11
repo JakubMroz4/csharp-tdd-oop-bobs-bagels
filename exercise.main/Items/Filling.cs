@@ -10,18 +10,18 @@ namespace exercise.main.Items
     public class Filling : IInventoryProduct
     {
         private string _sku;
-        private float _price;
+        private Decimal _price;
 
         public string SKU { get { return _sku; } }
 
-        public float Price { get { return _price; } }
+        public Decimal Price { get { return _price; } }
 
-        public float GetFinalPrice()
+        public Decimal GetFinalPrice()
         {
             return _price;
         }
 
-        public Filling(string sku, float price)
+        public Filling(string sku, Decimal price)
         {
             _sku = sku;
             _price = price;

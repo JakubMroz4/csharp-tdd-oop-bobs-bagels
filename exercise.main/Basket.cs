@@ -50,7 +50,7 @@ namespace exercise.main
             _capacity = newCapacity;
         }
 
-        public float GetTotalCost()
+        public Decimal GetTotalCost()
         {
             return _products.Sum(p => p.GetFinalPrice());
         }

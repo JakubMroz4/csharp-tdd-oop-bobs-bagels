@@ -9,9 +9,9 @@ namespace exercise.main.Interfaces
     public interface IInventoryProduct
     {
         public string SKU { get; }
-        public float Price { get; }        
+        public Decimal Price { get; }        
 
-        public float GetFinalPrice();
+        public Decimal GetFinalPrice();
         
     }
 }

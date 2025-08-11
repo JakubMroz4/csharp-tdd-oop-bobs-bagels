@@ -8,8 +8,8 @@ namespace exercise.main.Interfaces
 {
     public interface IDiscountable
     {
-        public float DiscountedPrice { get; }
+        public Decimal DiscountedPrice { get; }
 
-        public void SetDiscountPrice(float discountPrice);
+        public void SetDiscountPrice(Decimal discountPrice);
     }
 }
