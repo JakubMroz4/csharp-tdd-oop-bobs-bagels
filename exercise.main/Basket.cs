@@ -119,11 +119,12 @@ namespace exercise.main
         {
             var groupedByItem = _products.GroupBy(p => p.SKU);
 
-            string itemsString = "";
+            string CombinedItemsString = "";
 
             foreach (var group in groupedByItem) 
-            { 
-            
+            {
+                var name = group.FirstOrDefault().Name;
+                var itemString = $"{name}";
             }
         }
     }
