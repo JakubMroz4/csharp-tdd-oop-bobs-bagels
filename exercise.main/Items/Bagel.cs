@@ -47,6 +47,19 @@ namespace exercise.main.Items
             _fillings.Add(filling);
         }
 
+        public decimal GetSavedAmount()
+        {
+            if (!IsDiscounted)
+                return 0;
+
+            var sumFillings = _fillings.Sum(f => f.GetFinalPrice());
+            var fullPrice = _price + sumFillings;
+
+            var discountedPrice = GetFinalPrice();
+
+            return fullPrice - discountedPrice;
+        }
+
         public Bagel(string name, string sku, Decimal price) { 
             _name = name;
             _sku = sku;

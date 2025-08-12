@@ -3,7 +3,7 @@ using exercise.main;
 using exercise.main.Collections;
 using exercise.main.ReceiptPrinters;
 
-var basket = new Basket(15);
+var basket = new Basket(25);
 
 basket.Add(Products.BGLP());
 basket.Add(Products.BGLP());
@@ -19,6 +19,13 @@ basket.Add(Products.BGLP());
 basket.Add(Products.BGLP());
 
 basket.Add(Products.COFB());
+
+basket.Add(Products.BGLO());
+basket.Add(Products.BGLO());
+basket.Add(Products.BGLO());
+basket.Add(Products.BGLO());
+basket.Add(Products.BGLO());
+basket.Add(Products.BGLO());
 
 var price = basket.GetTotalCost();
 

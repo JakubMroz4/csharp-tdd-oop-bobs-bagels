@@ -26,12 +26,23 @@ namespace exercise.main.Items
 
         public Decimal GetFinalPrice()
         {
+            if (IsDiscounted)
+                return _discountedPrice;
+
             return _price;
         }
 
         public void SetDiscountPrice(Decimal discountPrice)
         {
             _discountedPrice = discountPrice;
+        }
+
+        public decimal GetSavedAmount()
+        {
+            if (!IsDiscounted)
+                return 0;
+
+            return _price - _discountedPrice;
         }
 
         public Coffee(string name, string sku, Decimal price)

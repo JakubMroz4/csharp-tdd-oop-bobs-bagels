@@ -12,5 +12,7 @@ namespace exercise.main.Interfaces
         public bool IsDiscounted { get; set; }
 
         public void SetDiscountPrice(Decimal discountPrice);
+
+        public Decimal GetSavedAmount();
     }
 }

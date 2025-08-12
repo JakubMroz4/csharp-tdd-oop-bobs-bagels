@@ -131,6 +131,15 @@ namespace exercise.main
                 var itemString = $"{name}" + " " + $"{group.Count()}" + " " + $"{price.ToString("F2")}" + "\n";
 
                 combinedItemsString += itemString;
+
+                if (group.Any(p => p.IsDiscounted))
+                {
+                    var savedAmount = group.Sum(p => p.GetSavedAmount());
+                    var savedAmountString = $"              (-{savedAmount.ToString("F2")})\n";
+                    combinedItemsString += savedAmountString;
+                }
+
+                
             }
 
             var combinedReceiptString = "";
@@ -149,6 +158,7 @@ namespace exercise.main
             startString += $"   {DateTime.Now}\n";
             startString += "\n";
             startString += "----------------------------\n";
+            startString += "\n";
 
 
             return startString;
@@ -159,6 +169,7 @@ namespace exercise.main
             var totalPrice = GetTotalCost();
 
             var endString = "";
+            endString += "\n";
             endString += "----------------------------\n";
             endString += $"Total                {totalPrice.ToString("F2")}\n";
             endString += "\n";
