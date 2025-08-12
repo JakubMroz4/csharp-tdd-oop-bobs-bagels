@@ -1,11 +1,12 @@
-﻿using exercise.main.Interfaces;
+﻿using exercise.main.Collections;
+using exercise.main.Exceptions;
+using exercise.main.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using exercise.main.Exceptions;
-using exercise.main.Collections;
 
 namespace exercise.main
 {
@@ -91,6 +92,8 @@ namespace exercise.main
                 // apply discounted prices if requirement passed
                 // move discounted items to new list
 
+                // todo refactor use 1 list with DiscountState enum instead of undiscounted and discounted lists?
+
                 foreach (var kvp in discount.ItemRequirementAmountDict) 
                 {
                     var newPrice = discount.ItemDiscountedPriceDict.GetValueOrDefault(kvp.Key);
@@ -119,13 +122,51 @@ namespace exercise.main
         {
             var groupedByItem = _products.GroupBy(p => p.SKU);
 
-            string CombinedItemsString = "";
+            string combinedItemsString = "";
 
             foreach (var group in groupedByItem) 
             {
                 var name = group.FirstOrDefault().Name;
-                var itemString = $"{name}";
+                var price = group.Sum(p => p.GetFinalPrice());
+                var itemString = $"{name}" + " " + $"{group.Count()}" + " " + $"{price.ToString("F2")}" + "\n";
+
+                combinedItemsString += itemString;
             }
+
+            var combinedReceiptString = "";
+            combinedReceiptString += GetReceiptStartString();
+            combinedReceiptString += combinedItemsString;
+            combinedReceiptString += GetReceiptEndString();
+
+            printer.Print(combinedReceiptString);
+        }
+
+        private string GetReceiptStartString()
+        {
+            var startString = "";
+            startString += "    ~~~ Bob's Bagels ~~~\n";
+            startString += "\n";
+            startString += $"   {DateTime.Now}\n";
+            startString += "\n";
+            startString += "----------------------------\n";
+
+
+            return startString;
+        }
+
+        private string GetReceiptEndString()
+        {
+            var totalPrice = GetTotalCost();
+
+            var endString = "";
+            endString += "----------------------------\n";
+            endString += $"Total                {totalPrice.ToString("F2")}\n";
+            endString += "\n";
+            endString += "  Thank you\n";
+            endString += "  For your order!\n";
+
+
+            return endString;
         }
     }
 }

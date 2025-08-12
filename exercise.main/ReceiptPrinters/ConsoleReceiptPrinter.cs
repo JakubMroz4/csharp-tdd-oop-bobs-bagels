@@ -11,7 +11,7 @@ namespace exercise.main.ReceiptPrinters
     {
         public void Print(string receipt)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(receipt);
         }
     }
 }
